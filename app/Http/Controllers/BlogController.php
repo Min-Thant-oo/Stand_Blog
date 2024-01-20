@@ -73,6 +73,8 @@ class BlogController extends Controller
             'blog'=>$blog,
             'mostRead_blogs' => Blog::inRandomOrder()->take(3)->get(),
             'siteconfig' => SiteConfig::first(),
+            'categories'  => Category::all(),
+            'tags'        => Tag::all(),
         ]);
     }
 
