@@ -27,5 +27,7 @@ class CategoryList extends Component
         return view('components.ccomponents.category-list', [
             'categories' => Category::all(),
         ]);
+
+        // here
     }
 }
