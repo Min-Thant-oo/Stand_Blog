@@ -85,8 +85,9 @@
                   </div>
 
                   {{-- comment section --}}
-                  <x-ccomponents.comments :comments="$blog->comment()->latest()->paginate(3)" />
-
+                  @if ($blog->comment->count()) 
+                    <x-ccomponents.comments :comments="$blog->comment()->latest()->paginate(3)" />
+                  @endif
 
                   {{-- comment form --}}
                     <div class="col-lg-12">
