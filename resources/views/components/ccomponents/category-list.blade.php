@@ -1,3 +1,4 @@
+  @props(['categories'])
   <div class="col-lg-12">
     <div class="sidebar-item categories">
       <div class="sidebar-heading">
