@@ -2,10 +2,10 @@
 
 namespace App\View\Components\ccomponents;
 
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\View\Component;
 
-class CategoryList extends Component
+class TagList extends Component
 {
     /**
      * Create a new component instance.
@@ -24,10 +24,8 @@ class CategoryList extends Component
      */
     public function render()
     {
-        return view('components.ccomponents.category-list', [
-            'categories' => Category::all(),
-        ]);
-
-        // here
+        // return view('components.ccomponents.tag-list', [
+        //     'tags' => Tag::all(),
+        // ]);
     }
 }

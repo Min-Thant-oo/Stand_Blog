@@ -27,6 +27,8 @@ class BlogController extends Controller
                                     ->withQueryString(),
 
             'randomBlogs' => Blog::inRandomOrder()->take(5)->get(),
+            'categories'  => Category::all(),
+            'tags'        => Tag::all(),
             'siteconfig' => SiteConfig::first(),
 
         ]);
