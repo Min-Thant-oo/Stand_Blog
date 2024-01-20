@@ -8,6 +8,6 @@
         <x-ccomponents.single-comment :comment="$comment" />
       @endforeach
       {{$comments->links('vendor.pagination.custom-pagination')}}
-      <x-ccomponents.comment-form />
+      {{-- <x-ccomponents.comment-form /> --}}
     </div>
   </div>
