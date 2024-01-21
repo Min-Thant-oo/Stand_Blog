@@ -1,4 +1,4 @@
-@props(['blogs', 'siteconfig', 'categories', 'tags'])
+@props(['blogs', 'siteconfig', 'randomBlogs', 'categories', 'tags'])
 {{-- @dd($blogs) --}}
 
 <x-ccomponents.layout :blog="$blogs" >

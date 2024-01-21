@@ -13,9 +13,10 @@ class CommentController extends Controller
     public function comments() {
         return view('admin.comment.comment', [
             'comments' => Comment::orderBy('id')
-                ->filter(request(['search']))
-                ->paginate(10)
-                ->withQueryString(),
+                ->filter(request(['search', 'title']))
+                ->get(),
+                // ->paginate(10)
+                // ->withQueryString(),
 
             'blogs' => Blog::all(),
         ]);

@@ -26,8 +26,9 @@ class BlogsController extends Controller
         return view('admin.blog.blog', [
             'blogs' => Blog::orderBy('id')
                 ->filter(request(['search', 'category', 'tag']))
-                ->paginate(10)
-                ->withQueryString(),
+                ->get(),
+                // ->paginate(10)
+                // ->withQueryString(),
 
             'category' => Category::all(),
             'tag'      => Tag::all(),

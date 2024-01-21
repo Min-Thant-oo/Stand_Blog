@@ -16,15 +16,13 @@ use Illuminate\Support\Facades\Mail;
 
 class BlogController extends Controller
 {
-    
-
 
     public function index() {
         return view('components.blogs.index', [
             'blogs' => Blog::latest()
-                                    ->filter(request(['search', 'category', 'tag', 'username']))
-                                    ->paginate(4)
-                                    ->withQueryString(),
+                            ->filter(request(['search', 'category', 'tag', 'username']))
+                            ->paginate(4)
+                            ->withQueryString(),
 
             'randomBlogs' => Blog::inRandomOrder()->take(5)->get(),
             'categories'  => Category::all(),

@@ -3,7 +3,13 @@
       <div class="blog-post">
         <div class="blog-thumb">
 
-          <img src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' width="600" height="350" alt="" style="object-fit: cover">
+          <img 
+            src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' 
+            width="600" 
+            height="350" 
+            alt="" 
+            style="object-fit: cover"
+          >
 
         </div>
         <div class="down-content">

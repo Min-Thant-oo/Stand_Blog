@@ -12,8 +12,9 @@ class ContactMessageController extends Controller
         return view('admin.contactmessages.contactmessages', [
             'contactmessages' => ContactMessage::orderBy('id')
                     ->filter(request(['search']))
-                    ->paginate(10)
-                    ->withQueryString(),
+                    ->get(),
+                    // ->paginate(10)
+                    // ->withQueryString(),
         ]);
     }
 

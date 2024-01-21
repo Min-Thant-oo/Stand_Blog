@@ -71,6 +71,6 @@
           @endforelse
         </tbody>
     </table>
-    {{$comments->links()}}
+    {{-- {{$comments->links()}} --}}
 </div>
 </x-adminlayout.layout>

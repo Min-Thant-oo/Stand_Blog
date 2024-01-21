@@ -85,7 +85,7 @@
             </tbody>
         </table>
         
-        {{$contactmessages->links()}}
+        {{-- {{$contactmessages->links()}} --}}
       
     </div>
 </x-adminlayout.layout>

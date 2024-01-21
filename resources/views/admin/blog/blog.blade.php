@@ -85,6 +85,6 @@
       
     </table>
 
-    {{$blogs->links()}}
+    {{-- {{$blogs->links()}} --}}
   </div>
 </x-adminlayout.layout>

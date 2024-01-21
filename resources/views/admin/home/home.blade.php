@@ -62,7 +62,7 @@
             <p class="mb-4 card-title">Recent Posts</p>
 
             <div class="row p-2 mb-4" >
-                @foreach ($blog->take(4) as $blog)
+                @foreach ($blog->take(5) as $blog)
                   <a href="/blogs/{{$blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                     {{-- <div class="row p-2 mb-4"> --}}
                     <div class="d-flex flex-column flex-sm-row gap-3 p-2 mb-4">
@@ -72,6 +72,7 @@
                           width="150" 
                           height="90" 
                           alt=""
+                          style="object-fit: cover"
                         >  
                       </div>
                       <div class="col-md-">

@@ -33,8 +33,8 @@ class SetUpCommand extends Command
         Artisan::call("storage:link");
         $this->info(Artisan::output());
 
-        // Artisan::call("db:wipe");
-        // $this->info(Artisan::output());
+        Artisan::call("db:wipe");
+        $this->info(Artisan::output());
 
         Artisan::call("migrate:install");
         $this->info(Artisan::output());
