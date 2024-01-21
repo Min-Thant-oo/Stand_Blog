@@ -59,7 +59,13 @@
               <td><a class="text-primary" href="/blogs/{{$blog->slug}}" target="_blank">{{$blog->title}}</a></td>
               {{-- <td><img src="/storage/{{$blog->thumbnail}}" alt=""></td> --}}
               <td>
-                <img src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' alt="">  
+                <a href="#" data-bs-toggle="modal" data-bs-target="#productModal{{ $blog->id }}">
+                  <img 
+                    src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' 
+                    alt=""
+                    style="object-fit: cover"
+                  >  
+                </a>
               </td>
               <td>{{$blog->category->name}}</td>
               <td>{{$blog->tag->count()}}</td>
@@ -74,6 +80,27 @@
                 
               </td>
             </tr>
+
+            @foreach ($blogs->reverse() as $index => $blog)
+              <div class="modal fade" id="productModal{{ $blog->id }}" tabindex="-1" aria-labelledby="productModalLabel{{ $blog->id }}" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="productModalLabel{{ $blog->id }}">{{ $blog->title }}</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: red; font-size: 1.5rem;"></button>
+                          </div>
+                          <div class="modal-body">
+                            <img 
+                              src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' 
+                              alt=""
+                            > 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            @endforeach
+
+
             @empty
               <tr>
                   <td colspan="7" class="border border-white ">
