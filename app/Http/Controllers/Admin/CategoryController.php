@@ -32,6 +32,12 @@ class CategoryController extends Controller
         Category::create($formData);
         return redirect('/admin/categories')->with('success', 'Category Successfully Created');
     }
+
+    public function categoryEdit(Category $category) {
+        return view('admin.category.category-editform', [
+            'category'  => $category,
+        ]);
+    }
     
 
     public function categoryUpdate(Category $category)
