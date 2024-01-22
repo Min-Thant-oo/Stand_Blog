@@ -32,7 +32,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/admin/contact-messages">
-          <i class="mdi mdi-tag menu-icon"></i>
+          <i class="mdi mdi-email-outline menu-icon"></i>
           <span class="menu-title">Contact Messages</span>
         </a>
       </li>
