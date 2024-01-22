@@ -66,16 +66,19 @@
                   <a href="/blogs/{{$blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                     {{-- <div class="row p-2 mb-4"> --}}
                     <div class="d-flex flex-column flex-sm-row gap-3 p-2 mb-4">
-                      <div class="col-md-">
+                      <div class="">
                         <img 
-                          src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' 
-                          width="150" 
-                          height="90" 
+                          src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
+                          {{-- width="150"  --}}
+                          {{-- height="90"  --}}
                           alt=""
-                          style="object-fit: cover"
+                          {{-- style="object-fit: cover" --}}
+                          style="width: 150px; height: 90px; object-fit: contain;"
+                          {{-- class="img-fluid" --}}
+
                         >  
                       </div>
-                      <div class="col-md-">
+                      <div class="">
                         <p class="card-description mb-2">{{$blog->category->name}}</p>
                         <h4 class="card-title text-primary mb-2">{{$blog->title}}</h4>
                         <p class="mb-">{{$blog->intro}}</p>

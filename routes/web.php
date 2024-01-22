@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\TagController;
 
 
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 
 Route::get('/', [BlogController::class, 'index']);
 Route::get('/about', [BlogController::class, 'about']);
@@ -60,8 +60,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 });
 
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+// Route::get('/user/profile', [UserProfileController::class, 'show'])
+//     ->name('profile.show')
+//     ->middleware('auth');
