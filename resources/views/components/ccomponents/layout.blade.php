@@ -26,23 +26,13 @@
 
     <x-ccomponents.navbar />
 
-    
-        
-
           {{$slot}}
-            
-            
-              
-         
-
-          
-    
 
     <x-ccomponents.footer />
 
       <!-- Bootstrap core JavaScript -->
       <script src="{{ asset('blog/vendor/jquery/jquery.min.js') }}"></script>
-      <script src="{{ asset('blog/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      {{-- <script src="{{ asset('blog/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
 
       <!-- Additional Scripts -->
       <script src="{{ asset('blog/assets/js/custom.js') }}"></script>
