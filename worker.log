@@ -1,0 +1,8 @@
+  2024-01-20 17:32:40 App\Jobs\ContactMessage ........................ RUNNING
+  2024-01-20 17:32:41 App\Jobs\ContactMessage .................. 699.18ms DONE
+  2024-01-20 17:32:41 App\Mail\ContactMessageMail .................... RUNNING
+  2024-01-20 17:32:47 App\Mail\ContactMessageMail ............ 6,014.32ms DONE
+  2024-01-20 17:36:40 App\Jobs\ContactMessage ........................ RUNNING
+  2024-01-20 17:36:41 App\Jobs\ContactMessage ................ 1,747.15ms DONE
+  2024-01-20 17:36:42 App\Mail\ContactMessageMail .................... RUNNING
+  2024-01-20 17:36:48 App\Mail\ContactMessageMail ............ 6,855.80ms DONE
