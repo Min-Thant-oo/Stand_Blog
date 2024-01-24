@@ -39,6 +39,7 @@
 
   <script src="{{ asset( 'admin/vendors/base/vendor.bundle.base.js' )}}"></script>
   <script src="{{ asset( 'admin/js/template.js' )}}"></script>
+  <script src="{{ asset( 'admin/js/jquery.cookie.js' )}}"  type="text/javascript"></script>
 
   {{-- ckeditor --}}
   <script src="/ckeditor/ckeditor.js"></script>

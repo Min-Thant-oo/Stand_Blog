@@ -61,24 +61,19 @@
           <div class="card-body">
             <p class="mb-4 card-title">Recent Posts</p>
 
-            <div class="row p-2 mb-4" >
+            <div class="row mb-4" >
                 @foreach ($blog->take(5) as $blog)
                   <a href="/blogs/{{$blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                     {{-- <div class="row p-2 mb-4"> --}}
-                    <div class="d-flex flex-column flex-sm-row gap-3 p-2 mb-4">
-                      <div class="">
+                    <div class="row mb-4 mt-1">
+                      <div class="col-sm-12 col-md-4">
                         <img 
                           src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
-                          {{-- width="150"  --}}
-                          {{-- height="90"  --}}
                           alt=""
-                          {{-- style="object-fit: cover" --}}
-                          style="width: 150px; height: 90px; object-fit: contain;"
-                          {{-- class="img-fluid" --}}
-
+                          style="width: 150px !important; height: 90px !important; object-fit: cover;"
                         >  
                       </div>
-                      <div class="">
+                      <div class="col-sm-12 col-md-8 ">
                         <p class="card-description mb-2">{{$blog->category->name}}</p>
                         <h4 class="card-title text-primary mb-2">{{$blog->title}}</h4>
                         <p class="mb-">{{$blog->intro}}</p>

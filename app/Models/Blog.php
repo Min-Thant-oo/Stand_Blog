@@ -23,7 +23,7 @@ class Blog extends Model
         parent::boot();
 
         static::creating(function ($blog) {
-            $blog->intro = Str::words(strip_tags($blog->body), 20);
+            $blog->intro = Str::words(strip_tags($blog->body), 30);
         });
         
     }
