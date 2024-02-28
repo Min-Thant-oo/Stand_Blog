@@ -4,12 +4,15 @@
         <div class="blog-thumb">
 
           <img 
-            src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}' 
+            {{-- src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/520/450?random=" . $blog->id) }}'  --}}
+            src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
             width="600" 
             height="350" 
             alt="" 
             style="object-fit: cover"
           >
+
+          {{-- https://source.unsplash.com/random/{$blog->id} --}}
 
         </div>
         <div class="down-content">

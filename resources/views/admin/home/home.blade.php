@@ -65,15 +65,15 @@
                 @foreach ($blog->take(5) as $blog)
                   <a href="/blogs/{{$blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                     {{-- <div class="row p-2 mb-4"> --}}
-                    <div class="row mb-4 mt-1">
-                      <div class="col-sm-12 col-md-4">
+                    <div class="col sm:row mb-4 mt-1">
+                      <div class="col-sm-4 col-md-12">
                         <img 
                           src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
                           alt=""
                           style="width: 150px !important; height: 90px !important; object-fit: cover;"
                         >  
                       </div>
-                      <div class="col-sm-12 col-md-8 ">
+                      <div class="col-sm-8 col-md-12 ">
                         <p class="card-description mb-2">{{$blog->category->name}}</p>
                         <h4 class="card-title text-primary mb-2">{{$blog->title}}</h4>
                         <p class="mb-">{{$blog->intro}}</p>

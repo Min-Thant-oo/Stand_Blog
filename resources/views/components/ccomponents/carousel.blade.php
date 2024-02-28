@@ -4,8 +4,13 @@
     <div class="owl-banner owl-carousel">
         @foreach ($randomBlogs as $blog)
           <div class="item">
-            <img src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/1000/680?random=" . $blog->id) }}' width="520" height="350" alt="">
-            {{-- <img src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://fakeimg.pl/350x200") }}' width="520" height="350" alt=""> --}}
+            <img 
+              {{-- src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/1000/680?random=" . $blog->id) }}'  --}}
+              src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
+              width="520" 
+              height="350" 
+              alt=""
+            >
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
