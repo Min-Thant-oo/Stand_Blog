@@ -10,7 +10,12 @@
     <form action="/admin/comments" class="d-flex flex-col flex-sm-row gap-sm-3" method="GET">
         <div class="d-flex flex-col flex-1 col-md- form-group">
             <label for="search">Search</label>
-            <input type="text" name="search" value="{{request('search')}}" class="form-control rounded-md" placeholder="Please enter to search">
+            <input 
+              type="text"   
+              name="search" 
+              value="{{request('search')}}" 
+              class="form-control rounded-md" placeholder="Please enter to search"
+            >
         </div>
 
         <div class="d-flex flex-col flex-1 col-md- form-group">
@@ -50,15 +55,19 @@
                 <a class="text-primary" href="mailto:{{$comment->email}}">{{$comment->email}}</a>
               </td>
               <td>
-                <a class="text-primary" href="/blogs/{{$comment->blog->slug}}" target="_blank">{{$comment->blog->title}}</a>
+                <a class="text-primary" href="{{ route('blog.show', $comment->blog->slug) }}" target="_blank">{{$comment->blog->title}}</a>
               </td>
               <td>{{\Illuminate\Support\Str::limit($comment->body, 30)}}</td>
               <td>{{$comment->created_at->format('Y-m-d')}}</td>
               <td class="d-flex gap-2">
-                <form action="/admin/comments/{{$comment->id}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?');">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
+                <form 
+                  action="{{ route('comments.destroy', $comment->id)}}" 
+                  method="post" 
+                  onsubmit="return confirm('Are you sure you want to delete this comment?');"
+                >
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
                 </form>
               </td>
             </tr>
@@ -71,7 +80,7 @@
           @endforelse
         </tbody>
     </table>
-    {{-- {{$comments->links()}} --}}
+    {{$comments->links()}}
 
 </div>
 </x-adminlayout.layout>

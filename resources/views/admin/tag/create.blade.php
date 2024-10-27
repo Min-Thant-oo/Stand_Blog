@@ -4,14 +4,14 @@
       <div class="card custom-card border border-white">
         <div class="card-body custom-card">
           <h4 class="card-title">Create New Tag</h4>
-            <form class="forms-sample" method="POST" action="/admin/tags/store" >
+            <form class="forms-sample" method="POST" action="{{ route('tags.store') }}" >
                 @csrf
 
                 <x-adminform.input name='name' />
                 <x-adminform.input name='slug' />
 
                 <div class="d-flex justify-content-end">
-                    <a href="/admin/tags" class="btn btn-light me-2">Cancel</a>
+                    <a href='{{ route('tags.index') }}' class="btn btn-light me-2">Cancel</a>
                     <button type="submit" class="btn btn-primary bg-primary">Submit</button>
                 </div>
             </form>

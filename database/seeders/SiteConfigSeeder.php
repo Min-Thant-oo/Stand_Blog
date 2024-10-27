@@ -32,7 +32,7 @@ class SiteConfigSeeder extends Seeder
                 EOT,
                 'phonenumber' => '552-336-5717',
                 'email' => 'minthantoo.ardil@gmail.com',
-                'address' => 'Istanbul, Turkey'
+                'address' => 'Indianapolis, Indiana'
             ]
         ];
 

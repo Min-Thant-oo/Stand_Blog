@@ -6,7 +6,7 @@
 <div class="m-4 p-4 ">
     <div class="d-flex flex-col flex-sm-row gap-2 gap-sm-0 justify-content-between sm:align-items-center mb-4">
         <h1 class="text-center card-title"><strong class="text-xl">Tags</strong></h1>
-        <a href="/admin/tags/create" class="btn btn-primary text-white">Create New Item</a>
+        <a href="{{ route('tags.create')}}" class="btn btn-primary text-white">Create New Item</a>
     </div>
     <form action="" class="d-flex flex-col flex-sm-row gap-sm-3 ">
         <div class="d-flex flex-col flex-1 col-md- form-group">
@@ -35,14 +35,18 @@
               <th scope="row">{{$index + 1}}</th>
               <td>{{ucwords($tag->name)}}</td>
               <td>{{$tag->slug}}</td>
-              <td>{{$tag->blog->count()}}</td>
+              <td>{{$tag->blog_count}}</td>
               {{-- <td>{{$tag->created_at->format('Y-m-d')}}</td> --}}
               <td class="d-flex gap-2">
-                <a href="/admin/tags/{{$tag->slug}}/edit" type="" class="btn btn-primary text-white">Edit</a>
-                <form action="/admin/tags/{{$tag->slug}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this tag?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
+                <a href="{{ route('tags.edit', $tag->slug) }}" type="" class="btn btn-primary text-white">Edit</a>
+                <form 
+                  action="{{ route('tags.destroy', $tag->slug)}}" 
+                  method="post" 
+                  onsubmit="return confirm('Are you sure you want to delete the tag {{ $tag->name }}?');"
+                >
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
                 </form>
               </td>
             </tr>

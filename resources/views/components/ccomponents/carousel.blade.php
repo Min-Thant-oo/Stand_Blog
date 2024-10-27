@@ -5,8 +5,8 @@
         @foreach ($randomBlogs as $blog)
           <div class="item">
             <img 
-              {{-- src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/1000/680?random=" . $blog->id) }}'  --}}
-              src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
+              src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/1000/680?random=" . $blog->id) }}' 
+              {{-- src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}'  --}}
               width="520" 
               height="350" 
               alt=""
@@ -20,7 +20,7 @@
                 <ul class="post-info">
                   <li>{{$blog->user->name}}</li>
                   <li>{{$blog->created_at->format('Y-m-d')}}</li>
-                  <li>12 Comments</li>
+                  <li>{{ $blog->comment_count}} Comments</li>
                 </ul>
               </div>
             </div>

@@ -1,5 +1,4 @@
 @props(['blogs', 'siteconfig', 'randomBlogs', 'categories', 'tags'])
-{{-- @dd($blogs) --}}
 
 <x-ccomponents.layout :blog="$blogs" >
     <x-ccomponents.carousel :randomBlogs="$randomBlogs" />

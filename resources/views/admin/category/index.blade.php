@@ -7,7 +7,7 @@
     <div class="d-flex flex-col gap-2 gap-sm-0 flex-sm-row justify-content-between sm:align-items-center mb-4">
         {{-- <h1 class="text-center">Categories</h1> --}}
         <h1 class="text-center card-title"><strong class="text-xl">Categories</strong></h1>
-        <a href="/admin/categories/create" class="btn btn-primary text-white">Create New Item</a>
+        <a href="{{ route('categories.create') }}" class="btn btn-primary text-white">Create New Item</a>
     </div>
     <form action="" class="d-flex flex-col flex-sm-row gap-sm-3 ">
         <div class="d-flex flex-col flex-1 form-group">
@@ -36,11 +36,15 @@
               <th scope="row">{{$index + 1}}</th>
               <td>{{ucwords($category->name)}}</td>
               <td>{{$category->slug}}</td>
-              <td>{{$category->blog->count()}}</td>
+              <td>{{$category->blog_count}}</td>
               {{-- <td>{{$category->created_at->format('Y-m-d')}}</td> --}}
               <td class="d-flex gap-2">
-                  <a href="/admin/categories/{{$category->slug}}/edit" class="btn btn-primary text-white">Edit</a>
-                  <form action="/admin/categories/{{$category->slug}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                  <a href="{{ route('categories.edit', $category->slug) }}" class="btn btn-primary text-white">Edit</a>
+                  <form 
+                    action="{{ route('categories.destroy', $category->slug) }}" 
+                    method="post" 
+                    onsubmit="return confirm('Are you sure you want to delete the category {{$category->name}}?');"
+                  >
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>

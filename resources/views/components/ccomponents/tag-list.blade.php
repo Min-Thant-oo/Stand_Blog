@@ -10,7 +10,10 @@
             <li>
                 <a 
                   class="{{ request('tag') == $tag->slug ? 'selected-tag-active' : 'selected-tag' }}"
-                  href="/?tag={{$tag->slug}}{{request('search') ? '&search='.request('search') : '' }}{{request('username') ? '&username='.request('username') : '' }}{{request('category') ? '&category='.request('category') : '' }}">{{ucwords($tag->name)}}</a>
+                  href="/?tag={{$tag->slug}}{{request('search') ? '&search='.request('search') : '' }}{{request('username') ? '&username='.request('username') : '' }}{{request('category') ? '&category='.request('category') : '' }}"
+                >
+                  {{ucwords($tag->name)}}
+                </a>
             </li>
           @endforeach
         </ul>

@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-center card-title"><strong class="text-xl">Contact Messages</strong></h1>
         </div>
-        <form action="/admin/contact-messages" class="d-flex flex-col flex-sm-row gap-sm-3" method="GET">
+        <form action="" class="d-flex flex-col flex-sm-row gap-sm-3" method="GET">
             <div class="d-flex flex-col flex-1 col-md- form-group">
                 <label for="search">Search</label>
                 <input type="text" name="search" value="{{request('search')}}" class="form-control rounded-md" placeholder="Please enter to search">
@@ -42,10 +42,14 @@
                   <td>{{$contactmessage->created_at->format('Y-m-d')}}</td>
                   <td class="d-flex gap-2">
                     <button type="button" class="btn btn-primary bg-primary" data-bs-toggle="modal" data-bs-target="#myModal{{ $contactmessage->id }}">View</button>
-                    <form action="/admin/contact-messages/{{$contactmessage->id}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?');">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
+                    <form 
+                      action="{{ route('contactmessages.destroy', $contactmessage->id) }}" 
+                      method="post" 
+                      onsubmit="return confirm('Are you sure you want to delete this comment?');"
+                    >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
                     </form>
                   </td>
                 </tr>
@@ -85,7 +89,7 @@
             </tbody>
         </table>
         
-        {{-- {{$contactmessages->links()}} --}}
+        {{$contactmessages->links()}}
       
     </div>
 </x-adminlayout.layout>

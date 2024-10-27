@@ -9,7 +9,7 @@
     <div class="card custom-card border border-white">
       <div class="card-body custom-card">
         <h4 class="card-title">Site Config</h4>
-        <form class="forms-sample" method="POST" action="/admin/Site-config/{{$siteconfig->id}}/update" >
+        <form class="forms-sample" method="POST" action="{{ route('siteconfig.update') }}" >
           @csrf
           @method('patch')
           
@@ -22,7 +22,7 @@
           <x-adminform.input name='address' value='{{$siteconfig->address}}' />
           
           <div class="d-flex justify-content-end gap-2">
-            <a href="/adminSite-config/edit" class="btn btn-light">Cancel</a>
+            <a href="{{ route('siteconfig.edit') }}" class="btn btn-light">Cancel</a>
             <button type="submit" class="btn btn-primary bg-primary">Update</button>
           </div>
 

@@ -10,19 +10,19 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    public function comments() {
-        return view('admin.comment.comment', [
-            'comments' => Comment::orderBy('id')
+    public function index() {
+        return view('admin.comment.index', [
+            'comments' => Comment::with('blog')->orderBy('id')
                 ->filter(request(['search', 'title']))
-                ->get(),
-                // ->paginate(10)
-                // ->withQueryString(),
+                // ->get(),
+                ->paginate(10)
+                ->withQueryString(),
 
             'blogs' => Blog::all(),
         ]);
     }
 
-    public function cmtDestroy(Comment $comment) {
+    public function destroy(Comment $comment) {
         $comment->delete();
         return back()->with('success', 'Comment Successfully Deleted');
     }

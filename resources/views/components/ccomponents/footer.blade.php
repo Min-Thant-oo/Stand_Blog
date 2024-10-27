@@ -12,9 +12,9 @@
       </div>
       <div class="col-lg-12">
         <div class="copyright-text">
-          <p>Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} Stand Blog Co.
+          <p>Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} Stand Blog Co
                 
-              | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+            | Min Thant Oo | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
         </div>
       </div>
     </div>

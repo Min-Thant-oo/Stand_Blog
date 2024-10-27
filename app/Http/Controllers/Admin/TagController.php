@@ -2,60 +2,54 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
-    public function tags()
+    public function index()
     {
-        return view('admin.tag.tag', [
-            'tags' => Tag::orderBy('id')
+        return view('admin.tag.index', [
+            'tags' => Tag::withCount('blog')
+                ->orderBy('id')
                 ->filter(request(['search']))
                 ->paginate(10)
                 ->withQueryString(),
         ]);
     }
 
-    public function tagCreate()
+    public function create()
     {
-        return view('admin.tag.tag-createform');
+        return view('admin.tag.create');
     }
 
-    public function tagStore()
+    public function store(TagRequest $request)
     {
-        $formData = request()->validate([
-            'name' => 'required | unique:tags,name',
-            'slug' => 'required | unique:tags,slug'
-        ]);
-
-        Tag::create($formData);
-
-        return redirect('/admin/tags')->with('success', 'Tag Successfully Created');
+        Tag::create($request->validated());
+        Cache::forget('tags');
+        return redirect()->route('tags.index')->with('success', 'Tag Successfully Created');
     }
 
-    public function tagEdit(Tag $tag)
+    public function edit(Tag $tag)
     {
-        return view('admin.tag.tag-editform', [
+        return view('admin.tag.edit', [
             'tag' => $tag,
         ]);
     }
 
-    public function tagUpdate(Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
-        $formData = request()->validate([
-            'name' => 'required | unique:tags,name,' . $tag->id,
-            'slug' => 'required | unique:tags,slug,' . $tag->id,
-        ]);
-
-        $tag->update($formData);
-        return redirect('/admin/tags')->with('success', 'Tag Successfully Updated');
+        $tag->update($request->validated());
+        Cache::forget('tags');
+        return redirect()->route('tags.index')->with('success', 'Tag Successfully Updated');
     }
 
-    public function tagDestroy(Tag $tag)
+    public function destroy(Tag $tag)
     {
         $tag->delete();
+        Cache::forget('tags');
         return back()->with('success', 'Tag Successfully Deleted');
     }
 }

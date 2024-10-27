@@ -2,57 +2,54 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
-    public function categories()
+    public function index()
     {
-        return view('admin.category.category', [
-            'categories' => Category::orderBy('id')
-                ->filter(request(['search']))
-                ->paginate(10)
-                ->withQueryString(),
+        return view('admin.category.index', [
+            'categories' => Category::withCount('blog')
+                            ->orderBy('id')
+                            ->filter(request(['search']))
+                            ->paginate(10)
+                            ->withQueryString(),
         ]);
     }
 
-    public function categoryCreate()
+    public function create()
     {
-        return view('admin.category.category-createform');
+        return view('admin.category.create');
     }
 
-    public function categoryStore()
+    public function store(CategoryRequest $request)
     {
-        $formData = request()->validate([
-            'name' => 'required | unique:categories,name',
-            'slug' => 'required | unique:categories,slug'
-        ]);
-        Category::create($formData);
-        return redirect('/admin/categories')->with('success', 'Category Successfully Created');
+        Category::create($request->validated());
+        Cache::forget('categories');
+        return redirect()->route('categories.index')->with('success', 'Category Successfully Created');
     }
 
-    public function categoryEdit(Category $category) {
-        return view('admin.category.category-editform', [
+    public function edit(Category $category) {
+        return view('admin.category.edit', [
             'category'  => $category,
         ]);
     }
     
-
-    public function categoryUpdate(Category $category)
+    public function update(Category $category, CategoryRequest $request)
     {
-        $formData = request()->validate([
-            'name' => 'required | unique:categories,name,' . $category->id,
-            'slug' => 'required | unique:categories,slug,' . $category->id,
-        ]);
-        $category->update($formData);
-        return redirect('/admin/categories')->with('success', 'Category Updated Successfully');
+        $category->update($request->validated());
+        Cache::forget('categories');
+        return redirect()->route('categories.index')->with('success', 'Category Updated Successfully');
     }
 
-    public function categoryDestroy(Category $category)
+    public function destroy(Category $category)
     {
         $category->delete();
+        Cache::forget('categories');
         return back()->with('success', 'Category Successfully deleted');
     }
 }

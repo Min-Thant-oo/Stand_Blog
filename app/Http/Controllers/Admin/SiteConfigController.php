@@ -3,31 +3,28 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SiteConfigRequest;
 use App\Models\SiteConfig;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SiteConfigController extends Controller
 {
-    public function config() {
-        return view('admin.config.config', [
-            'siteconfig' => SiteConfig::find(1),
+    public function edit() 
+    {
+        return view('admin.config.edit', [
+            'siteconfig' => SiteConfig::first(),
         ]);
     }
 
-    public function configUpdate(SiteConfig $siteconfig) {
-        $formData = request()->validate([
-            'facebook' => 'required',
-            'twitter' => 'required',
-            'linkedIn' => 'required',
-            'about' => 'required',
-            'phonenumber' => 'required',
-            'email' => 'required | email',
-            'address' => 'required',
-        ]);
+    public function update(SiteConfigRequest $request) 
+    {
+        $siteconfig = SiteConfig::first();
+        $siteconfig->update($request->validated());
 
-        $siteconfig->update($formData);
+        Cache::forget('site_config');
 
-        return redirect('/admin/Site-config')->with('success', 'Site Configuration Updated Successfully');
+        return back()->with('success', 'Site Configuration Updated Successfully');
         
     }
 }

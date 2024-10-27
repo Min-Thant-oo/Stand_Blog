@@ -10,13 +10,14 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    protected $fillable = ['thumbnail', 'category', 'title', 'slug', 'body', 'user_id'];
-
-
-    // protected $with = ['user', 'category', 'tag', 'comment'];
-
+    protected $fillable = [
+        'thumbnail', 
+        'category_id',  
+        'title', 
+        'slug', 
+        'body', 
+        'user_id'
+    ];
 
     protected static function boot()
     {

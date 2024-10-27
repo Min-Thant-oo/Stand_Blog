@@ -8,19 +8,19 @@ use Illuminate\Http\Request;
 
 class ContactMessageController extends Controller
 {
-    public function contactMessages() {
-        return view('admin.contactmessages.contactmessages', [
+    public function index() {
+        return view('admin.contactmessages.index', [
             'contactmessages' => ContactMessage::orderBy('id')
                     ->filter(request(['search']))
-                    ->get(),
-                    // ->paginate(10)
-                    // ->withQueryString(),
+                    // ->get(),
+                    ->paginate(10)
+                    ->withQueryString(),
         ]);
     }
 
 
-    public function contactMessagesDestroy(ContactMessage $contactmessages) {
-        $contactmessages->delete();
+    public function destroy(ContactMessage $contactmessage) {
+        $contactmessage->delete();
         return back()->with('success', 'Contact Message Deleted Successfully');
     }
 }

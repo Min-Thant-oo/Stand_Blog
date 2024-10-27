@@ -1,4 +1,4 @@
-@props(['blogs', 'category', 'tag'])
+@props(['blogs', 'categories', 'tags'])
 <x-adminlayout.layout>
 
   <x-adminform.flashnoti :success="session('success')" />
@@ -6,7 +6,7 @@
   <div class="m-4 p-4">
     <div class="d-flex flex-col gap-2 gap-sm-0 flex-sm-row justify-content-between sm:align-items-center mb-4">
         <h1 class="text-center card-title"><strong class="text-xl">Blogs</strong></h1>
-        <a href="/admin/blogs/create" class="btn btn-primary text-white">Create New Item</a>
+        <a href="{{ route('blogs.create') }}" class="btn btn-primary text-white">Create New Item</a>
     </div>
     
     <form action="/admin/blogs" class="d-flex flex-col flex-sm-row gap-sm-3" method="GET">
@@ -16,10 +16,10 @@
         </div>
 
         <div class="d-flex flex-col flex-1 col-md- form-group">
-          <label for="category">Blog category</label>
+          <label for="category">Category</label>
           <select name="category" id="category" class="form-select border border-dark">
             <option value="">All</option>
-            @foreach ($category as $category)
+            @foreach ($categories as $category)
               <option value="{{$category->slug}}" {{ request('category') == $category->slug ? 'selected' : '' }}>{{$category->name}}</option>
             @endforeach
           </select>
@@ -29,7 +29,7 @@
             <label for="tag">Tag</label>
             <select name="tag" id="tag" class="form-select border border-dark">
               <option value="">All</option>
-              @foreach ($tag as $tag)
+              @foreach ($tags as $tag)
                 <option value="{{$tag->slug}}" {{ request('tag') == $tag->slug ? 'selected' : '' }}>{{$tag->name}}</option>
               @endforeach
             </select>
@@ -56,8 +56,7 @@
           @forelse ($blogs->reverse() as $index => $blog)
             <tr>
               <th scope="row">{{ $index + 1 }}</th>
-              <td><a class="text-primary" href="/blogs/{{$blog->slug}}" target="_blank">{{$blog->title}}</a></td>
-              {{-- <td><img src="/storage/{{$blog->thumbnail}}" alt=""></td> --}}
+              <td><a class="text-primary" href="{{ route('blog.show', $blog->slug) }}" target="_blank">{{$blog->title}}</a></td>
               <td>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#productModal{{ $blog->id }}">
                   <img 
@@ -68,11 +67,15 @@
                 </a>
               </td>
               <td>{{$blog->category->name}}</td>
-              <td>{{$blog->tag->count()}}</td>
-              <td>{{$blog->comment->count()}}</td>
+              <td>{{$blog->tag_count}}</td>
+              <td>{{$blog->comment_count}}</td>
               <td class="d-flex gap-2">
-                <a href="/admin/blogs/{{$blog->slug}}/edit" class="btn btn-primary text-white">Edit</a>
-                <form action="/admin/blogs/{{$blog->slug}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?');">
+                <a href="{{ route('blogs.edit', $blog->slug) }}" class="btn btn-primary text-white">Edit</a>
+                <form 
+                  action="{{ route('blogs.destroy', $blog->slug) }}" 
+                  method="post" 
+                  onsubmit="return confirm('Are you sure you want to delete this blog?');"
+                >
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="btn btn-danger bg-danger text-white">Delete</button>
@@ -112,6 +115,6 @@
       
     </table>
 
-    {{-- {{$blogs->links()}} --}}
+    {{$blogs->links()}}
   </div>
 </x-adminlayout.layout>

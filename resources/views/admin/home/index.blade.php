@@ -1,4 +1,5 @@
-@props(['blog', 'category', 'tag', 'comment'])
+@props(['blogs', 'comments', 'blogCount', 'tagCount', 'categoryCount', 'commentCount'])
+{{-- @dd($blog) --}}
 <x-adminlayout.layout>
   <div class="content-wrapper">
     <div class="row">
@@ -14,7 +15,7 @@
                     <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-2 text-muted">Total Blogs</small>
-                      <h5 class="me-2 mb-0">{{$blog->count()}}</h5>
+                      <h5 class="me-2 mb-0">{{$blogCount}}</h5>
                     </div>
                   </div>
                   <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -22,7 +23,7 @@
                     \f244 me-3 icon-lg text-danger"></i>
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-2 text-muted">Total Categories</small>
-                      <h5 class="me-2 mb-0">{{$category->count()}}</h5>
+                      <h5 class="me-2 mb-0">{{$categoryCount}}</h5>
                     </div>
                   </div>
                   <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -30,7 +31,7 @@
                     \f5e9 me-3 icon-lg text-danger"></i>
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-2 text-muted">Total Tags</small>
-                      <h5 class="me-2 mb-0">{{$tag->count()}}</h5>
+                      <h5 class="me-2 mb-0">{{$tagCount}}</h5>
                     </div>
                   </div>
                   <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
@@ -45,7 +46,7 @@
                     \f270 me-3 icon-lg text-warning"></i>
                     <div class="d-flex flex-column justify-content-around">
                       <small class="mb-2 text-muted">Total Blog Comments</small>
-                      <h5 class="me-2 mb-0">{{$comment->count()}}</h5>
+                      <h5 class="me-2 mb-0">{{$commentCount}}</h5>
                     </div>
                   </div>
                 </div>
@@ -62,13 +63,14 @@
             <p class="mb-4 card-title">Recent Posts</p>
 
             <div class="row mb-4" >
-                @foreach ($blog->take(5) as $blog)
+                @foreach ($blogs as $blog)
                   <a href="/blogs/{{$blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                     {{-- <div class="row p-2 mb-4"> --}}
                     <div class="col sm:row mb-4 mt-1">
                       <div class="col-sm-4 col-md-12">
                         <img 
-                          src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}' 
+                        src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://picsum.photos/1000/680?random=" . $blog->id) }}' 
+                          {{-- src='{{ asset($blog->thumbnail ? "/storage/$blog->thumbnail" : "https://source.unsplash.com/random/{$blog->id}") }}'  --}}
                           alt=""
                           style="width: 150px !important; height: 90px !important; object-fit: cover;"
                         >  
@@ -93,7 +95,7 @@
           <div class="card-body">
             <p class="mb-4 card-title">Recent Comments</p>
 
-            @foreach ($comment->take(5) as $comment)
+            @foreach ($comments as $comment)
               <a href="/blogs/{{$comment->blog->slug}}" target="_blank" style="text-decoration: none; color: inherit">
                 <div class=" p-4 pb-2 mb-4 pt- border rounded cursor-pointer">
                   <div class="col-md-12">
