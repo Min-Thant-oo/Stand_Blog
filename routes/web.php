@@ -24,6 +24,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         ->group(function () {
 
             Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+            
+            Route::get('/siteconfig', [SiteConfigController::class, 'edit'])->name('siteconfig.edit');
+            Route::patch('/siteconfig/update', [SiteConfigController::class, 'update'])->name('siteconfig.update');
 
             Route::resource('blogs', BlogsController::class)
                 ->parameters(['blogs' => 'blog:slug'])
@@ -42,10 +45,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
             Route::resource('contactmessages', ContactMessageController::class)
                 ->only('index', 'destroy');
-
-            Route::get('/siteconfig/edit', [SiteConfigController::class, 'edit'])->name('siteconfig.edit');
-            Route::patch('/siteconfig/update', [SiteConfigController::class, 'update'])->name('siteconfig.update');
-                
         });
 
 
