@@ -3,7 +3,7 @@
 <div class="col-lg-12">
     <div class="sidebar-item recent-posts">
       <div class="sidebar-heading">
-        <h2>Recent Posts</h2>
+        <h2>Recent Blogs</h2>
       </div>
       <div class="content">
         <ul>
